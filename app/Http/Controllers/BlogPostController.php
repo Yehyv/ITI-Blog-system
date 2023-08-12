@@ -27,7 +27,7 @@ class BlogPostController extends Controller
     }
     public function index()
     {
-        $posts= BlogPost::paginate(5);
+        $posts= BlogPost::with('User')->paginate(5);
         return view('blog.index',['posts'=> $posts]);
     }
 

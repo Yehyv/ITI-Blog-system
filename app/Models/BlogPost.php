@@ -9,7 +9,7 @@ class BlogPost extends Model
 {
     use HasFactory;
     protected $fillable =['title','body','user_id'];
-    public function users(){
+    public function User(){
         return $this->belongsTo(User::class);
     }
 }

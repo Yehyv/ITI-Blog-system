@@ -44,8 +44,7 @@
                 @forelse($posts as $post)
                 <div class="card">
                 <div class="card-header">
-                    @forelse($Users as $users)
-                        @if($post->user_id)
+                    {{$post->User->name}}
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">{{ ucfirst($post->title) }}</h5>
