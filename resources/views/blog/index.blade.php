@@ -38,7 +38,7 @@
                 </div>    
                 
                 <div class="d-flex align-items-end flex-column">
-                    <a href="{{route('index')}}" class="btn btn-primary " style="margin-bottom: 5px; ">Create Post</a>
+                    <a href="{{route('createPost')}}" class="btn btn-primary " style="margin-bottom: 5px; ">Create Post</a>
                 </div>
                 
                 @forelse($posts as $post)
