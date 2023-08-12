@@ -44,13 +44,14 @@
                 @forelse($posts as $post)
                 <div class="card">
                 <div class="card-header">
-                    User name
+                    @forelse($Users as $users)
+                        @if($post->user_id)
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">{{ ucfirst($post->title) }}</h5>
                     <p class="card-text">{{ $post->body }}</p>
                     <a href="{{route('editPost',$post->id)}}" class="btn btn-primary">Edit Post</a>
-                    <form id="delete-frm" class="btn " action="{{route('deletePost',$post->id)}}" method="POST" >
+                    <form id="delete-frm" class="btn " action="{{route('deletePost',$post->id)}}" method="POST" style="margin-top: 17.5px" >
                         @method('DELETE')
                         @csrf
                         <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure you want to delete?')" >Delete Post</button>
