@@ -11,6 +11,12 @@ class BlogPostController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function createPost()
+    {
+       
+        return view('blog.create');
+    }
+
     public function home()
     {
         // dd('sda');
@@ -34,12 +40,7 @@ class BlogPostController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        dd('xxxxxxxxxxxxxxxxx');
-        return view('blog.create');
-    }
-
+  
     /**
      * Store a newly created resource in storage.
      */

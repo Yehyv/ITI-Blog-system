@@ -21,7 +21,8 @@ Route::get('/redirect', [BlogPostController::class, 'redirect'])->name('redirect
 
 Route::get('/blog', [BlogPostController::class, 'index'])->name('index');
 Route::get('/blog/{blogPost}', [BlogPostController::class, 'show'])->name('showPost');
-Route::get('/blog/create',[BlogPostController::class,'create'])->name('createPost');
+
+Route::get('/create', [BlogPostController::class, 'createPost'])->name('createPost');
 Route::post('/blog/create', [BlogPostController::class, 'store'])->name('storePost'); //saves the created post to the databse
 Route::get('/blog/{blogPost}/edit', [BlogPostController::class, 'edit'])->name('editPost'); //shows edit post form
 Route::put('/blog/{blogPost}/edit', [BlogPostController::class, 'update'])->name('updatePost'); //commits edited post to the database 
