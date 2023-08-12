@@ -4,12 +4,27 @@ namespace App\Http\Controllers;
 
 use App\Models\BlogPost;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BlogPostController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    public function home()
+    {
+        // dd('sda');
+        return view('blog.home');
+    }
+    public function redirect()
+    {
+        if(Auth::user())
+        {
+            return redirect()->route('index');
+        }
+        else
+        return redirect()->route('/');
+    }
     public function index()
     {
         $posts= BlogPost::paginate(5);

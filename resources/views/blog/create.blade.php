@@ -1,6 +1,4 @@
-@extends('layouts.app')
 
-@section('content')
 <html>
     <head>
         <link href="{{asset('bootstrap-5.3.1-dist/css/bootstrap.css')}}" rel="stylesheet">
@@ -42,4 +40,3 @@
         </div>
     </body>
 </html>
-@endsection

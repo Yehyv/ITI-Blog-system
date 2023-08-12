@@ -1,5 +1,4 @@
-@extends('layouts.app')
-@section('content')
+
 <html>
     <head>
     <link href="{{asset('bootstrap-5.3.1-dist/css/bootstrap.css')}}" rel="stylesheet">
@@ -13,6 +12,13 @@
                     <div class="col-8 ">
                         <h1 class="display-one" >Welcome to Our Blog System!</h1>
                         <p class="d-flex align-items-center" >Enjoy reading our posts. Click on a post to read!</p>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                           
+                                
+                                    <a href="{{ route('logout' )}}"  onclick="event.preventDefault(); this.closest('form').submit();" class="btn btn-danger">logout</a>
+                        </form>
+
                     </div>
                     
                     <div>
@@ -68,4 +74,3 @@
     
 </body>
 </html>
-@endsection
