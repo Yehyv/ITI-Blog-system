@@ -17,11 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [BlogPostController::class, 'home'])->name('home');
 Route::get('/redirect', [BlogPostController::class, 'redirect'])->name('redirect');
-
-
 Route::get('/blog', [BlogPostController::class, 'index'])->name('index');
 Route::get('/blog/{blogPost}', [BlogPostController::class, 'show'])->name('showPost');
-
 Route::get('/create', [BlogPostController::class, 'createPost'])->name('createPost');
 Route::post('/blog/create', [BlogPostController::class, 'store'])->name('storePost'); //saves the created post to the databse
 Route::get('/blog/{blogPost}/edit', [BlogPostController::class, 'edit'])->name('editPost'); //shows edit post form
