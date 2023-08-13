@@ -33,7 +33,7 @@ class BlogPostController extends Controller
     }
     public function index()
     {
-        $posts= BlogPost::with('User')->paginate(5);
+        $posts= BlogPost::with('User','comments')->orderBy('created_at','DESC')->paginate(10);
         return view('blog.index',['posts'=> $posts]);
     }
 
@@ -49,7 +49,7 @@ class BlogPostController extends Controller
         $newPost = BlogPost::create([
             'title'=>$request->title,
             'body'=>$request->body,
-            'user_id'=>1
+            'user_id'=> Auth::User()->id
         ]);
         return redirect('blog/'.$newPost->id);
     }

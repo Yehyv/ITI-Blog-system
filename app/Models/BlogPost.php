@@ -12,4 +12,7 @@ class BlogPost extends Model
     public function User(){
         return $this->belongsTo(User::class);
     }
+    public function comments(){
+        return $this->hasMany(comments::class,'post_id');
+    }
 }

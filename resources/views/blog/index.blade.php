@@ -9,8 +9,8 @@
         <div class="row ">
             <div class="col-12 pt-2 " >
                  <div class="row d-flex" style="align-items: center">
-                    <div class="col-8 ">
-                        <h1 class="display-one" >Welcome to Our Blog System!</h1>
+                    <div class="col-12 ">
+                        <h1 class="center" >Welcome to Our Blog System!</h1>
                         <p class="d-flex align-items-center" >Enjoy reading our posts. Click on a post to read!</p>
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
@@ -44,11 +44,26 @@
                 @forelse($posts as $post)
                 <div class="card">
                 <div class="card-header">
-                    {{$post->User->name}}
+                    <div class="row ">
+                        <div class="col">{{$post->User->name}}</div>
+                        <div class="col d-flex justify-content-end">{{$post->created_at->format('h:i:s d-m-Y')}}</div>
+
+                    </div>                    
+                    
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">{{ ucfirst($post->title) }}</h5>
                     <p class="card-text">{{ $post->body }}</p>
+                    <div class="row">
+                        <p>Comments</p>
+                        <div class="col">
+                            @foreach($post->comments as $comments){
+                                {{$comments->content}}
+                            }
+                            @endforeach
+                        </div>
+                    </div>
+
                     <a href="{{route('editPost',$post->id)}}" class="btn btn-primary">Edit Post</a>
                     <form id="delete-frm" class="btn " action="{{route('deletePost',$post->id)}}" method="POST" style="margin-top: 17.5px" >
                         @method('DELETE')
@@ -65,9 +80,9 @@
                     <p class="text-warning">No blog Posts available</p>
                 @endforelse
                 
-                <div class="mt-2" >
+                {{-- <div class="mt-2" >
                     {{$posts->links("pagination::bootstrap-5")}}
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
