@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogPostController;
+use App\Http\Controllers\commentsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,12 @@ Route::post('/blog/create', [BlogPostController::class, 'store'])->name('storePo
 Route::get('/blog/{blogPost}/edit', [BlogPostController::class, 'edit'])->name('editPost'); //shows edit post form
 Route::put('/blog/{blogPost}/edit', [BlogPostController::class, 'update'])->name('updatePost'); //commits edited post to the database 
 Route::delete('/blog/{blogPost}', [BlogPostController::class, 'destroy'])->name('deletePost'); //deletes post from the database
+
+
+Route::put('/blog', [commentsController::class, 'store'])->name('storeComment'); //saves the created post to the databse
+
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

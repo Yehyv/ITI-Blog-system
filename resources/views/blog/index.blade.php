@@ -52,19 +52,41 @@
                     
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">{{ ucfirst($post->title) }}</h5>
-                    <p class="card-text">{{ $post->body }}</p>
+                    <h5 class="card-title" style="font-size: 25px">{{ ucfirst($post->title) }}</h5>
+                    <p class="card-text" style="font-size: 20px">{{ $post->body }}</p>
                     <div class="row">
-                        <p>Comments</p>
                         <div class="col">
-                            @foreach($post->comments as $comments){
-                                {{$comments->content}}
-                            }
-                            @endforeach
+                            @if($post->comments->count()!=0)
+                                @foreach($post->comments as $comments)
+
+                                @endforeach
+                            @else
+                                    <div class="col-md-8 col-lg-12">
+                                        <div class="card shadow-0 border" style="background-color: #f0f2f5;">
+                                          <div class="card-body p-4">
+                                            <div class="form-outline mb-4">
+                                              <form action="{{route('storeComment')}}" method="POST">
+                                                @csrf
+                                                {{ method_field('PUT') }}
+                                                <input type="hidden" id="post_id" class="form-control" name="post_id" value={{$post->id}} placeholder="Type post id cxcv..." />
+                                                <input type="text" id="addANote" class="form-control" name="content" placeholder="Type comment..." />
+                                                <button id="btn-submit" class="btn btn-primary">
+                                                  Add Comment
+                                              </button>
+                                              {{-- <a href="{{route('storeComment')}}" class="btn btn-primary" >Add Comment</a> --}}
+                                                <br>
+                                                <label class="form-label" for="addANote">+ Add a note</label>
+                                              </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif    
                         </div>
                     </div>
 
                     <a href="{{route('editPost',$post->id)}}" class="btn btn-primary">Edit Post</a>
+                    
                     <form id="delete-frm" class="btn " action="{{route('deletePost',$post->id)}}" method="POST" style="margin-top: 17.5px" >
                         @method('DELETE')
                         @csrf
@@ -80,9 +102,9 @@
                     <p class="text-warning">No blog Posts available</p>
                 @endforelse
                 
-                {{-- <div class="mt-2" >
+                <div class="mt-2" >
                     {{$posts->links("pagination::bootstrap-5")}}
-                </div> --}}
+                </div>
             </div>
         </div>
     </div>
