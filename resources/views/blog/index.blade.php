@@ -60,18 +60,18 @@
                             <div class="col-md-8 col-lg-12">
                                         <div class="card shadow-0 border" style="background-color: #f0f2f5;">
                                           <div class="card-body p-4">
-                                            <div class="form-outline mb-4">
+                                            <div class="form-outline mb-12">
                                               <form action="{{route('storeComment')}}" method="POST">
                                                 @csrf
                                                 {{ method_field('PUT') }}
                                                 <input type="hidden" id="post_id" class="form-control" name="post_id" value={{$post->id}} placeholder="Type post id cxcv..." />
                                                 <input type="text" id="addANote" class="form-control" name="content" placeholder="Type comment..." />
-                                                <button id="btn-submit" class="btn btn-primary">
+                                                <button id="btn-submit" class="btn btn-primary" style="margin-top: 5px">
                                                   Add Comment
                                               </button>
                                               {{-- <a href="{{route('storeComment')}}" class="btn btn-primary" >Add Comment</a> --}}
                                                 <br>
-                                                <label class="form-label" for="addANote">+ Add a note</label>
+                                                <label class="form-label" for="addANote" style="margin-top: 5px">+ Add a note</label>
                                               </form>
                                             </div>
                                         </div>
@@ -87,8 +87,14 @@
                                     <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(4).webp" alt="avatar" width="25"
                                     height="25" />
                                     <p class="small mb-0 ms-2">Martha</p>
+                                    
                                 </div>
                                 <div class="d-flex flex-row align-items-center">
+                                    <form id="delete-frm" class="btn " action="{{route('deleteComment',$comments->id)}}" method="POST" style="margin-top: 17.5px" >
+                                        @method('DELETE')
+                                        @csrf
+                                        <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure you want to delete?')" >Delete Post</button>
+                                    </form>
                                     <p class="small text-muted mb-0">Upvote?</p>
                                     <i class="far fa-thumbs-up mx-2 fa-xs text-black" style="margin-top: -0.16rem;"></i>
                                     <p class="small text-muted mb-0">3</p>
