@@ -68,25 +68,22 @@
                                 <p>{{$comments->content}}</p>
 
                                 <div class="d-flex justify-content-between">
-                                <div class="d-flex flex-row align-items-center">
-                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(4).webp" alt="avatar" width="25"
-                                    height="25" />
-                                    <p class="small mb-0 ms-2">{{$comments->user->name}}</p>
-                                </div>
-                                <div class="d-flex flex-row align-items-center">
-                                    <form id="delete-frm" class="btn " action="{{route('deleteComment',$comments->id)}}" method="POST" style="margin-top: 17.5px" >
-                                        @csrf
-<<<<<<< HEAD
-                                        @method('DELETE')
-                                        <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure you want to delete?')" >Delete Post</button>
-=======
-                                        <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure you want to delete?')" ><i class="fas fa-trash-can"></i></button>
->>>>>>> 294077b4685be0253d9a7f4e7979043bd8f257de
-                                    </form>
-                                    {{--  <p class="small text-muted mb-0">Upvote?</p>
-                                    <i class="far fa-thumbs-up mx-2 fa-xs text-black" style="margin-top: -0.16rem;"></i>
-                                    <p class="small text-muted mb-0">3</p>  --}}
-                                </div>
+                                    <div class="d-flex flex-row align-items-center">
+                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(4).webp" alt="avatar" width="25"
+                                        height="25" />
+                                        <p class="small mb-0 ms-2">{{$comments->user->name}}</p>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center">
+                                        <form id="delete-frm" class="btn " action="{{route('deleteComment',$comments->id)}}" method="POST" style="margin-top: 17.5px" >
+                                            @csrf
+
+                                            @method('DELETE')
+                                                <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure you want to delete?')" ><i class="fas fa-trash-can"></i></button>
+                                        </form>
+                                        {{--  <p class="small text-muted mb-0">Upvote?</p>
+                                        <i class="far fa-thumbs-up mx-2 fa-xs text-black" style="margin-top: -0.16rem;"></i>
+                                        <p class="small text-muted mb-0">3</p>  --}}
+                                    </div>
                                 </div>
                             </div>
                             </div>
@@ -103,6 +100,7 @@
                                             <button id="btn-submit" class="btn btn-primary" style="margin-top: 5px">
                                               Add Comment
                                           </button>
+                                          {{-- <a href="{{route('storeComment')}}" class="btn btn-primary" >Add Comment</a> --}}
                                             <br>
                                           </form>
                                         </div>
@@ -122,9 +120,10 @@
                                                 <button id="btn-submit" class="btn btn-primary">
                                                   Add Comment
                                               </button>
+                                              {{-- <a href="{{route('storeComment')}}" class="btn btn-primary" >Add Comment</a> --}}
                                               </form>
                                             </div>
-                                        </div>
+                                        <`/div>
                                     </div>
                                 </div>
                             @endif    
@@ -153,7 +152,31 @@
                 </div>
             </div>
         </div>
+        
     </div>
-    
+    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="{{asset('bootstrap-5.3.1-dist/css/bootstrap.css')}}"></script>
 </body>
 </html>
