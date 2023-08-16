@@ -76,12 +76,8 @@
                                 <div class="d-flex flex-row align-items-center">
                                     <form id="delete-frm" class="btn " action="{{route('deleteComment',$comments->id)}}" method="POST" style="margin-top: 17.5px" >
                                         @csrf
-<<<<<<< HEAD
                                         @method('DELETE')
-                                        <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure you want to delete?')" >Delete Post</button>
-=======
                                         <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure you want to delete?')" ><i class="fas fa-trash-can"></i></button>
->>>>>>> 294077b4685be0253d9a7f4e7979043bd8f257de
                                     </form>
                                     {{--  <p class="small text-muted mb-0">Upvote?</p>
                                     <i class="far fa-thumbs-up mx-2 fa-xs text-black" style="margin-top: -0.16rem;"></i>
@@ -103,7 +99,6 @@
                                             <button id="btn-submit" class="btn btn-primary" style="margin-top: 5px">
                                               Add Comment
                                           </button>
-                                          {{-- <a href="{{route('storeComment')}}" class="btn btn-primary" >Add Comment</a> --}}
                                             <br>
                                           </form>
                                         </div>
@@ -123,10 +118,9 @@
                                                 <button id="btn-submit" class="btn btn-primary">
                                                   Add Comment
                                               </button>
-                                              {{-- <a href="{{route('storeComment')}}" class="btn btn-primary" >Add Comment</a> --}}
                                               </form>
                                             </div>
-                                        <`/div>
+                                        </div>
                                     </div>
                                 </div>
                             @endif    

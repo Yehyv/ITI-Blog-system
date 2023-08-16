@@ -55,7 +55,6 @@ class commentsController extends Controller
      */
     public function destroy(comments $comments)
     {
-        return $comments;
         $comments->delete();
         return redirect()->back()->with('deleted');
     }
