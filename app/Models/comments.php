@@ -12,4 +12,7 @@ class comments extends Model
     public function Post(){
         return $this->belongsTo(BlogPost::class);
     }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }
