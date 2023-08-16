@@ -93,8 +93,8 @@
                                 </div>
                                 <div class="d-flex flex-row align-items-center">
                                     <form id="delete-frm" class="btn " action="{{route('deleteComment',$comments->id)}}" method="POST" style="margin-top: 17.5px" >
-                                        @method('DELETE')
                                         @csrf
+                                        @method('DELETE')
                                         <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure you want to delete?')" >Delete Post</button>
                                     </form>
                                     <p class="small text-muted mb-0">Upvote?</p>
