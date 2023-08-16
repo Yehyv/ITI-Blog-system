@@ -1,8 +1,10 @@
-
 <html>
     <head>
     <link href="{{asset('bootstrap-5.3.1-dist/css/bootstrap.css')}}" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
     </head>
         <body>
             
@@ -76,12 +78,34 @@
                                 <div class="d-flex flex-row align-items-center">
                                     <form id="delete-frm" class="btn " action="{{route('deleteComment',$comments->id)}}" method="POST" style="margin-top: 17.5px" >
                                         @csrf
-<<<<<<< HEAD
                                         @method('DELETE')
-                                        <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure you want to delete?')" >Delete Post</button>
-=======
                                         <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure you want to delete?')" ><i class="fas fa-trash-can"></i></button>
->>>>>>> 294077b4685be0253d9a7f4e7979043bd8f257de
+                                    </form>
+                                    
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                                        Edit
+                                      </button>
+                                        <div class="modal" id="myModal" tabindex="-1">
+                                            <div class="modal-dialog">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <form id="edit-frm" class="btn" action="{{route('updateComment',$comments->id)}}" method="POST" style="margin-top: 17.5px">
+                                                        @csrf
+                                                        @method('PUT')
+                                                  <h5 class="modal-title">Modal title</h5>
+                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                  <p>Modal body text goes here.</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                  <button type="button" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                                            
                                     </form>
                                     {{--  <p class="small text-muted mb-0">Upvote?</p>
                                     <i class="far fa-thumbs-up mx-2 fa-xs text-black" style="margin-top: -0.16rem;"></i>
@@ -154,6 +178,8 @@
             </div>
         </div>
     </div>
-    
+    <link href="{{asset('bootstrap-5.3.1-dist/js/bootstrap.js')}}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
 </body>
 </html>

@@ -29,6 +29,7 @@ Route::delete('/blog/{blogPost}', [BlogPostController::class, 'destroy'])->name(
 
 Route::put('/blog', [commentsController::class, 'store'])->name('storeComment'); //saves the created post to the databse
 Route::delete('/deleteblog/{comments}', [commentsController::class, 'destroy'])->name('deleteComment');
+Route::put('/blogEdit/{comments}', [commentsController::class, 'update'])->name('updateComment');
 
 
 Route::get('/dashboard', function () {

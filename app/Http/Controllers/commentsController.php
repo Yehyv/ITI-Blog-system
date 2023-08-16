@@ -45,9 +45,12 @@ class commentsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, comments $comments)
     {
-        //
+        $comments->update([
+            'content'=> $request->content
+        ]);
+        return redirect()->back()->with('message','updated');
     }
 
     /**
