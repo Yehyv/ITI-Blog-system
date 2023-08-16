@@ -2,6 +2,7 @@
 <html>
     <head>
     <link href="{{asset('bootstrap-5.3.1-dist/css/bootstrap.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
         <body>
             
@@ -29,12 +30,12 @@
                           </form>
                     </div>
                     
-                    <!-- <div class="col-4">
+                    {{--  <!-- <div class="col-4">
                         <p>Create new Post</p>
                         <a href="/blog/create/post" class="btn btn-primary btn-sm">Add Post</a>
                         <br>
                         <br>
-                    </div> -->
+                    </div> -->  --}}
                 </div>    
                 
                 @if(Session::has('message'))
@@ -60,26 +61,7 @@
                     <div class="row">
                         <div class="col">
                             @if($post->comments->count()!=0)
-                            <div class="col-md-8 col-lg-12">
-                                        <div class="card shadow-0 border" style="background-color: #f0f2f5;">
-                                          <div class="card-body p-4">
-                                            <div class="form-outline mb-12">
-                                              <form action="{{route('storeComment')}}" method="POST">
-                                                @csrf
-                                                {{ method_field('PUT') }}
-                                                <input type="hidden" id="post_id" class="form-control" name="post_id" value={{$post->id}} placeholder="Type post id cxcv..." />
-                                                <input type="text" id="addANote" class="form-control" name="content" placeholder="Type comment..." />
-                                                <button id="btn-submit" class="btn btn-primary" style="margin-top: 5px">
-                                                  Add Comment
-                                              </button>
-                                              {{-- <a href="{{route('storeComment')}}" class="btn btn-primary" >Add Comment</a> --}}
-                                                <br>
-                                                <label class="form-label" for="addANote" style="margin-top: 5px">+ Add a note</label>
-                                              </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            
                                 @foreach($post->comments as $comments)
                                 <div class="card mb-4">
                             <div class="card-body">
@@ -89,23 +71,42 @@
                                 <div class="d-flex flex-row align-items-center">
                                     <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(4).webp" alt="avatar" width="25"
                                     height="25" />
-                                    <p class="small mb-0 ms-2">Martha</p>
+                                    <p class="small mb-0 ms-2">{{$comments->user->name}}</p>
                                 </div>
                                 <div class="d-flex flex-row align-items-center">
                                     <form id="delete-frm" class="btn " action="{{route('deleteComment',$comments->id)}}" method="POST" style="margin-top: 17.5px" >
                                         @method('DELETE')
                                         @csrf
-                                        <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure you want to delete?')" >Delete Post</button>
+                                        <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure you want to delete?')" ><i class="fas fa-trash-can"></i></button>
                                     </form>
-                                    <p class="small text-muted mb-0">Upvote?</p>
+                                    {{--  <p class="small text-muted mb-0">Upvote?</p>
                                     <i class="far fa-thumbs-up mx-2 fa-xs text-black" style="margin-top: -0.16rem;"></i>
-                                    <p class="small text-muted mb-0">3</p>
+                                    <p class="small text-muted mb-0">3</p>  --}}
                                 </div>
                                 </div>
                             </div>
                             </div>
                                 @endforeach
-                            @else
+                                <div class="col-md-8 col-lg-12">
+                                    <div class="card shadow-0 border" style="background-color: #f0f2f5;">
+                                      <div class="card-body p-4">
+                                        <div class="form-outline mb-12">
+                                          <form action="{{route('storeComment')}}" method="POST">
+                                            @csrf
+                                            {{ method_field('PUT') }}
+                                            <input type="hidden" id="post_id" class="form-control" name="post_id" value={{$post->id}} placeholder="Type post id cxcv..." />
+                                            <input type="text" id="addANote" class="form-control" name="content" placeholder="Type comment..." />
+                                            <button id="btn-submit" class="btn btn-primary" style="margin-top: 5px">
+                                              Add Comment
+                                          </button>
+                                          {{-- <a href="{{route('storeComment')}}" class="btn btn-primary" >Add Comment</a> --}}
+                                            <br>
+                                          </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                @else
                                     <div class="col-md-8 col-lg-12">
                                         <div class="card shadow-0 border" style="background-color: #f0f2f5;">
                                           <div class="card-body p-4">
