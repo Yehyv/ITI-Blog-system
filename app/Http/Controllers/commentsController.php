@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\BlogPost;
 use App\Models\comments;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class commentsController extends Controller
@@ -30,9 +31,9 @@ class commentsController extends Controller
             'post_id'=> $request->post_id,
             'user_id'=> Auth::User()->id
         ]);
-        return redirect()->back()->with('added');
+        return redirect()->back()->with('message','comment added successfully');
     }
-
+    
     /**
      * Display the specified resource.
      */

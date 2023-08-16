@@ -33,7 +33,7 @@ class BlogPostController extends Controller
     }
     public function index()
     {
-        $posts= BlogPost::with('User','comments')->orderBy('created_at','DESC')->paginate(10);
+        $posts= BlogPost::with('User','comments')->orderBy('created_at','DESC')->paginate(5);
         return view('blog.index',['posts'=> $posts]);
     }
 

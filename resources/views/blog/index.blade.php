@@ -37,10 +37,12 @@
                     </div> -->
                 </div>    
                 
+                @if(Session::has('message'))
+                  <p class="alert alert-info">{{ Session::get('message') }}</p>
+                  @endif
                 <div class="d-flex align-items-end flex-column">
                     <a href="{{route('createPost')}}" class="btn btn-primary " style="margin-bottom: 5px; ">Create Post</a>
                 </div>
-                
                 @forelse($posts as $post)
                 <div class="card">
                 <div class="card-header">
@@ -51,6 +53,7 @@
                     </div>                    
                     
                 </div>
+                
                 <div class="card-body">
                     <h5 class="card-title" style="font-size: 25px">{{ ucfirst($post->title) }}</h5>
                     <p class="card-text" style="font-size: 20px">{{ $post->body }}</p>
@@ -87,7 +90,6 @@
                                     <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(4).webp" alt="avatar" width="25"
                                     height="25" />
                                     <p class="small mb-0 ms-2">Martha</p>
-                                    
                                 </div>
                                 <div class="d-flex flex-row align-items-center">
                                     <form id="delete-frm" class="btn " action="{{route('deleteComment',$comments->id)}}" method="POST" style="margin-top: 17.5px" >
@@ -117,11 +119,9 @@
                                                   Add Comment
                                               </button>
                                               {{-- <a href="{{route('storeComment')}}" class="btn btn-primary" >Add Comment</a> --}}
-                                                <br>
-                                                <label class="form-label" for="addANote">+ Add a note</label>
                                               </form>
                                             </div>
-                                        </div>
+                                        <`/div>
                                     </div>
                                 </div>
                             @endif    
