@@ -33,8 +33,15 @@ class BlogPostController extends Controller
     }
     public function index()
     {
-        $posts= BlogPost::with('User','comments')->orderBy('created_at','DESC')->paginate(5);
-        return view('blog.index',['posts'=> $posts]);
+        if (request('search')) {
+            $post  = BlogPost::where('title', 'like',  request('search') . '%')->paginate(5);
+        } else {
+            $post= BlogPost::with('User','comments')->orderBy('created_at','DESC')->paginate(5);
+        }
+        
+        
+        return view('blog.index',['posts'=> $post]);
+
     }
 
     /**

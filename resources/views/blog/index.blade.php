@@ -11,24 +11,28 @@
     <div class="container ">
         <div class="row ">
             <div class="col-12 pt-2 " >
-                 <div class="row d-flex" style="align-items: center">
+                 <div class="row d-flex align-items-center" >
                     <div class="col-12 ">
                         <h1 class="center" >Welcome to Our Blog System!</h1>
                         <p class="d-flex align-items-center" >Enjoy reading our posts. Click on a post to read!</p>
-                        <form action="{{ route('logout') }}" method="POST">
+                        <form action="{{ route('logout') }}" method="POST" >
                             @csrf
                            
                                 
-                                    <a href="{{ route('logout' )}}"  onclick="event.preventDefault(); this.closest('form').submit();" class="btn btn-danger">logout</a>
+                                    <a href="{{ route('logout' )}}"  onclick="event.preventDefault(); this.closest('form').submit();" class="btn btn-danger" >Logout</a>
                         </form>
 
                     </div>
                     
-                    <div>
-                        <form class="form-inline md-form mr-auto mb-4  d-flex align-items-center" method="POST">
-                            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
                             
-                            <a href="{{route('showPost','10')}}" class="btn btn-primary " >Search</a>
+                    
+                    
+                    <div>
+                        <form class="form-inline md-form mr-auto mb-4  d-flex align-items-center" action="{{route('Search')}}" method="POST">
+                            @csrf
+                            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="search" name="search">
+                            
+                            <button class="btn btn-primary" type="submit">Search</button>
                           </form>
                     </div>
                     
@@ -67,29 +71,33 @@
                                 @foreach($post->comments as $comments)
                                 <div class="card mb-4">
                             <div class="card-body">
-                                <p>{{$comments->content}}</p>
-
+                                
+                               
                                 <div class="d-flex justify-content-between">
                                 <div class="d-flex flex-row align-items-center">
-                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(4).webp" alt="avatar" width="25"
-                                    height="25" />
-                                    <p class="small mb-0 ms-2">{{$comments->user->name}}</p>
+                                    <i class="fa-solid fa-user fa-xl" ></i>
+                                    <p class="small mb-0 ms-2" style="font-size: 15px">{{$comments->user->name}}</p>
+                                    
                                 </div>
                                 <div class="d-flex flex-row align-items-center">
-                                    <form id="delete-frm" class="btn " action="{{route('deleteComment',$comments->id)}}" method="POST" style="margin-top: 17.5px" >
-                                        @csrf
-<<<<<<< HEAD
-                                        @method('DELETE')
-                                        <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure you want to delete?')" >Delete Post</button>
-=======
-                                        <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure you want to delete?')" ><i class="fas fa-trash-can"></i></button>
->>>>>>> 294077b4685be0253d9a7f4e7979043bd8f257de
-                                    </form>
+                                    @if(auth()->User()->id == $comments->user_id)
+                                        <form id="delete-frm" class="btn " action="{{route('deleteComment',$comments->id)}}" method="POST" style="margin-top: 17.5px" >
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure you want to delete?')" ><i class="fas fa-trash-can"></i></button>
+                                        </form>
+                                        
+                                    @endif
+                                    
+                                        
+                                    
+                                    
                                     {{--  <p class="small text-muted mb-0">Upvote?</p>
                                     <i class="far fa-thumbs-up mx-2 fa-xs text-black" style="margin-top: -0.16rem;"></i>
                                     <p class="small text-muted mb-0">3</p>  --}}
                                 </div>
                                 </div>
+                                <p>{{$comments->content}}</p>
                             </div>
                             </div>
                                 @endforeach
@@ -128,20 +136,21 @@
                                               {{-- <a href="{{route('storeComment')}}" class="btn btn-primary" >Add Comment</a> --}}
                                               </form>
                                             </div>
-                                        <`/div>
+                                        </div>
                                     </div>
                                 </div>
                             @endif    
                         </div>
                     </div>
-
-                    <a href="{{route('editPost',$post->id)}}" class="btn btn-primary">Edit Post</a>
-                    
-                    <form id="delete-frm" class="btn " action="{{route('deletePost',$post->id)}}" method="POST" style="margin-top: 17.5px" >
-                        @method('DELETE')
-                        @csrf
-                        <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure you want to delete?')" >Delete Post</button>
-                    </form>
+                    @if(auth()->User()->id == $post->user_id)
+                        <a href="{{route('editPost',$post->id)}}" class="btn btn-primary">Edit Post</a>
+                        
+                        <form id="delete-frm" class="btn " action="{{route('deletePost',$post->id)}}" method="POST" style="margin-top: 17.5px" >
+                            @method('DELETE')
+                            @csrf
+                            <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure you want to delete?')" >Delete Post</button>
+                        </form>
+                    @endif
                     {{-- <a href="#" class="btn btn-danger" >Delete</a> --}}
                 </div>
                 </div>
@@ -159,6 +168,6 @@
         </div>
         
     </div>
-    
+    <script src="{{asset('bootstrap-5.3.1-dist/js/bootstrap.js')}}"></script>
 </body>
 </html>

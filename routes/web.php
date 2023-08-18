@@ -3,8 +3,9 @@
 use App\Http\Controllers\BlogPostController;
 use App\Http\Controllers\commentsController;
 use App\Http\Controllers\ProfileController;
+use App\Models\BlogPost;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Middleware\AuthUser;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [BlogPostController::class, 'home'])->name('home');
+Route::middleware(['auth'])->group(function(){
+
 Route::get('/redirect', [BlogPostController::class, 'redirect'])->name('redirect');
 Route::get('/blog', [BlogPostController::class, 'index'])->name('index');
 Route::get('/blog/{blogPost}', [BlogPostController::class, 'show'])->name('showPost');
@@ -25,11 +28,14 @@ Route::post('/blog/create', [BlogPostController::class, 'store'])->name('storePo
 Route::get('/blog/{blogPost}/edit', [BlogPostController::class, 'edit'])->name('editPost'); //shows edit post form
 Route::put('/blog/{blogPost}/edit', [BlogPostController::class, 'update'])->name('updatePost'); //commits edited post to the database 
 Route::delete('/blog/{blogPost}', [BlogPostController::class, 'destroy'])->name('deletePost'); //deletes post from the database
-
+Route::post('/blog/search', [BlogPostController::class, 'index'])->name('Search'); 
 
 Route::put('/blog', [commentsController::class, 'store'])->name('storeComment'); //saves the created post to the databse
 Route::delete('/deleteblog/{comments}', [commentsController::class, 'destroy'])->name('deleteComment');
 Route::put('/blogEdit/{comments}', [commentsController::class, 'update'])->name('updateComment');
+
+});
+
 
 
 Route::get('/dashboard', function () {
